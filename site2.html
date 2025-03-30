@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunshine Mobiles - Premium Smartphones</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-yellow: #FFD700;
+            --dark-yellow: #FFA500;
+            --light-yellow: #FFFACD;
+            --background: #FFF9E6;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-dark);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-yellow);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--text-dark);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #000;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--text-dark);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0.6)), url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-dark);
+        }
+        
+        .hero-content {
+            width: 100%;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--text-dark);
+            color: var(--primary-yellow);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--text-dark);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-dark);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--text-dark);
+            color: var(--primary-yellow);
+        }
+        
+        /* Featured Phones */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 36px;
+            color: var(--text-dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .phones {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .phone-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .phone-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .phone-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .phone-image {
+            height: 250px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .phone-image img {
+            max-width: 80%;
+            max-height: 80%;
+            transition: transform 0.3s;
+        }
+        
+        .phone-card:hover .phone-image img {
+            transform: scale(1.05);
+        }
+        
+        .phone-info {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .phone-brand {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .phone-name {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .phone-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .feature {
+            background-color: var(--light-yellow);
+            color: var(--text-dark);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .phone-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--dark-yellow);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 16px;
+            margin-left: 5px;
+        }
+        
+        /* Brands Section */
+        .brands {
+            background-color: white;
+            padding: 40px 0;
+            margin: 60px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .brand-logos {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        
+        .brand-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+            max-width: 120px;
+            max-height: 60px;
+        }
+        
+        .brand-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow));
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            border-radius: 10px;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--text-dark);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #222;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-yellow);
+        }
+        
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-yellow);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 30px;
+                padding: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-mobile-alt"></i>
+                    Sunshine Mobiles
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Phones</a></li>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">Deals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Discover the Latest Smartphones</h1>
+                <p>Explore our collection of premium mobile devices with cutting-edge technology and exclusive deals</p>
+                <div>
+                    <a href="#" class="btn">Shop Now</a>
+                    <a href="#" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">Featured Phones</h2>
+        <div class="phones">
+            <div class="phone-card">
+                <div class="phone-badge">New</div>
+                <div class="phone-image">
+                    <img src="https://images.samsung.com/is/image/samsung/p6pim/uk/2307/gallery/uk-galaxy-z-fold5-f946-sm-f946bzkdeub-537001592?$650_519_PNG$" alt="Samsung Galaxy Z Fold 5">
+                </div>
+                <div class="phone-info">
+                    <div class="phone-brand">Samsung</div>
+                    <h3 class="phone-name">Galaxy Z Fold 5</h3>
+                    <div class="phone-features">
+                        <span class="feature">Foldable</span>
+                        <span class="feature">12GB RAM</span>
+                        <span class="feature">512GB</span>
+                    </div>
+                    <div class="phone-price">
+                        <div class="price">$1,799 <span class="old-price">$1,999</span></div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="phone-card">
+                <div class="phone-badge">Popular</div>
+                <div class="phone-image">
+                    <img src="https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1693009279096" alt="iPhone 15 Pro">
+                </div>
+                <div class="phone-info">
+                    <div class="phone-brand">Apple</div>
+                    <h3 class="phone-name">iPhone 15 Pro</h3>
+                    <div class="phone-features">
+                        <span class="feature">A17 Pro</span>
+                        <span class="feature">6.1"</span>
+                        <span class="feature">256GB</span>
+                    </div>
+                    <div class="phone-price">
+                        <div class="price">$999 <span class="old-price">$1,099</span></div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="phone-card">
+                <div class="phone-badge">Best Value</div>
+                <div class="phone-image">
+                    <img src="https://i.ebayimg.com/images/g/1~sAAOSwH4Nk9~1E/s-l1600.jpg" alt="Google Pixel 8 Pro">
+                </div>
+                <div class="phone-info">
+                    <div class="phone-brand">Google</div>
+                    <h3 class="phone-name">Pixel 8 Pro</h3>
+                    <div class="phone-features">
+                        <span class="feature">Tensor G3</span>
+                        <span class="feature">6.7"</span>
+                        <span class="feature">128GB</span>
+                    </div>
+                    <div class="phone-price">
+                        <div class="price">$899</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="phone-card">
+                <div class="phone-badge">New</div>
+                <div class="phone-image">
+                    <img src="https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-13t-pro-1.jpg" alt="Xiaomi 13T Pro">
+                </div>
+                <div class="phone-info">
+                    <div class="phone-brand">Xiaomi</div>
+                    <h3 class="phone-name">13T Pro</h3>
+                    <div class="phone-features">
+                        <span class="feature">Dimensity 9200+</span>
+                        <span class="feature">120W Charging</span>
+                        <span class="feature">512GB</span>
+                    </div>
+                    <div class="phone-price">
+                        <div class="price">$699</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="phone-card">
+                <div class="phone-badge">Trending</div>
+                <div class="phone-image">
+                    <img src="https://images.samsung.com/is/image/samsung/p6pim/uk/sm-s918bzadeub/gallery/uk-galaxy-s23-ultra-5g-sm-s918bzadeub-537047592?$650_519_PNG$" alt="Samsung Galaxy S23 Ultra">
+                </div>
+                <div class="phone-info">
+                    <div class="phone-brand">Samsung</div>
+                    <h3 class="phone-name">Galaxy S23 Ultra</h3>
+                    <div class="phone-features">
+                        <span class="feature">200MP Camera</span>
+                        <span class="feature">S Pen</span>
+                        <span class="feature">1TB</span>
+                    </div>
+                    <div class="phone-price">
+                        <div class="price">$1,199 <span class="old-price">$1,379</span></div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="phone-card">
+                <div class="phone-badge">Editor's Choice</div>
+                <div class="phone-image">
+                    <img src="https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/a98-5g/navigation/A985G_Blue_v2.png.thumb.webp" alt="OPPO Find N2 Flip">
+                </div>
+                <div class="phone-info">
+                    <div class="phone-brand">OPPO</div>
+                    <h3 class="phone-name">Find N2 Flip</h3>
+                    <div class="phone-features">
+                        <span class="feature">Flip Phone</span>
+                        <span class="feature">8GB RAM</span>
+                        <span class="feature">256GB</span>
+                    </div>
+                    <div class="phone-price">
+                        <div class="price">$849</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="brands">
+        <div class="container">
+            <h2 class="section-title">Our Brands</h2>
+            <div class="brand-logos">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Samsung_Logo.svg/2560px-Samsung_Logo.svg.png" alt="Samsung" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/505px-Apple_logo_black.svg.png" alt="Apple" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1200px-HP_logo_2012.svg.png" alt="Google" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Xiaomi_logo_%282021-%29.svg/1024px-Xiaomi_logo_%282021-%29.svg.png" alt="Xiaomi" class="brand-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Oppo_Logo_2019.svg/1200px-Oppo_Logo_2019.svg.png" alt="OPPO" class="brand-logo">
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="newsletter">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest updates on new arrivals, special offers and exclusive deals straight to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sunshine Mobiles</h3>
+                    <p>Your trusted destination for premium smartphones and accessories with the best prices and service.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Sunshine Ave, Tech City</li>
+                        <li><i class="fas fa-phone"></i> (800) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@sunshinemobiles.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9AM - 8PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Sunshine Mobiles. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

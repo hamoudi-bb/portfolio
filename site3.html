@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golden Laptops - Premium Notebooks</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-yellow: #FFD700;
+            --dark-yellow: #FFA500;
+            --light-yellow: #FFFACD;
+            --background: #FFF9E6;
+            --text-dark: #333333;
+            --text-light: #666666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--background);
+            color: var(--text-dark);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-yellow);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--text-dark);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: #000;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--text-dark);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0.6)), url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--text-dark);
+        }
+        
+        .hero-content {
+            width: 100%;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--text-dark);
+            color: var(--primary-yellow);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--text-dark);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-dark);
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--text-dark);
+            color: var(--primary-yellow);
+        }
+        
+        /* Featured Laptops */
+        .section-title {
+            text-align: center;
+            margin: 60px 0 40px;
+            font-size: 36px;
+            color: var(--text-dark);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-yellow);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .laptops {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .laptop-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .laptop-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .laptop-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+        
+        .laptop-image {
+            height: 200px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .laptop-image img {
+            max-width: 80%;
+            max-height: 80%;
+            transition: transform 0.3s;
+        }
+        
+        .laptop-card:hover .laptop-image img {
+            transform: scale(1.05);
+        }
+        
+        .laptop-info {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .laptop-brand {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        
+        .laptop-name {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .laptop-specs {
+            margin-bottom: 15px;
+        }
+        
+        .spec {
+            display: flex;
+            margin-bottom: 8px;
+        }
+        
+        .spec-label {
+            font-weight: 500;
+            width: 100px;
+            color: var(--text-light);
+        }
+        
+        .spec-value {
+            flex: 1;
+        }
+        
+        .laptop-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        
+        .price {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--dark-yellow);
+        }
+        
+        .old-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 16px;
+            margin-left: 5px;
+        }
+        
+        /* Categories */
+        .categories {
+            background-color: white;
+            padding: 40px 0;
+            margin: 60px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .category-card {
+            background-color: var(--light-yellow);
+            border-radius: 8px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            background-color: var(--primary-yellow);
+            transform: translateY(-5px);
+        }
+        
+        .category-card i {
+            font-size: 40px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+        
+        .category-card h3 {
+            font-size: 18px;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            margin-bottom: 60px;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-yellow);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-yellow);
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+        
+        .author-info p {
+            color: var(--text-light);
+            font-size: 14px;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            background: linear-gradient(135deg, var(--primary-yellow), var(--dark-yellow));
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            border-radius: 10px;
+        }
+        
+        .newsletter h2 {
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 30px 0 0 30px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--text-dark);
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 0 30px 30px 0;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #222;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--primary-yellow);
+        }
+        
+        .footer-column p {
+            color: #ccc;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-yellow);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-yellow);
+            color: var(--text-dark);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .btn {
+                padding: 10px 20px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 30px;
+                margin-bottom: 10px;
+            }
+            
+            .newsletter-form button {
+                border-radius: 30px;
+                padding: 15px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-laptop"></i>
+                    Golden Laptops
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Brands</a></li>
+                        <li><a href="#">Deals</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Laptops for Work & Play</h1>
+                <p>Discover our collection of high-performance laptops with the latest technology and exclusive discounts</p>
+                <div>
+                    <a href="#" class="btn">Shop Now</a>
+                    <a href="#" class="btn btn-outline">View Deals</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <h2 class="section-title">Featured Laptops</h2>
+        <div class="laptops">
+            <div class="laptop-card">
+                <div class="laptop-badge">New</div>
+                <div class="laptop-image">
+                    <img src="https://www.apple.com/v/macbook-pro-14-and-16/b/images/overview/hero/hero_intro_endframe__e6khcva4hkeq_large.jpg" alt="MacBook Pro 16">
+                </div>
+                <div class="laptop-info">
+                    <div class="laptop-brand">Apple</div>
+                    <h3 class="laptop-name">MacBook Pro 16"</h3>
+                    <div class="laptop-specs">
+                        <div class="spec">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">M2 Max 12-core</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">RAM:</span>
+                            <span class="spec-value">32GB</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Storage:</span>
+                            <span class="spec-value">1TB SSD</span>
+                        </div>
+                    </div>
+                    <div class="laptop-price">
+                        <div class="price">$3,499</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="laptop-card">
+                <div class="laptop-badge">Best Seller</div>
+                <div class="laptop-image">
+                    <img src="https://images.samsung.com/is/image/samsung/p6pim/uk/feature/164428986/uk-feature--530091390?$FB_TYPE_A_MO_JPG$" alt="Samsung Galaxy Book3 Ultra">
+                </div>
+                <div class="laptop-info">
+                    <div class="laptop-brand">Samsung</div>
+                    <h3 class="laptop-name">Galaxy Book3 Ultra</h3>
+                    <div class="laptop-specs">
+                        <div class="spec">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">i7-1360P</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">GPU:</span>
+                            <span class="spec-value">RTX 4050</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Storage:</span>
+                            <span class="spec-value">512GB SSD</span>
+                        </div>
+                    </div>
+                    <div class="laptop-price">
+                        <div class="price">$1,799 <span class="old-price">$1,999</span></div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="laptop-card">
+                <div class="laptop-badge">Editor's Choice</div>
+                <div class="laptop-image">
+                    <img src="https://m.media-amazon.com/images/I/71S8U9VzLTL._AC_SL1500_.jpg" alt="Dell XPS 15">
+                </div>
+                <div class="laptop-info">
+                    <div class="laptop-brand">Dell</div>
+                    <h3 class="laptop-name">XPS 15 9530</h3>
+                    <div class="laptop-specs">
+                        <div class="spec">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">i9-13900H</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Display:</span>
+                            <span class="spec-value">15.6" 4K OLED</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Storage:</span>
+                            <span class="spec-value">1TB SSD</span>
+                        </div>
+                    </div>
+                    <div class="laptop-price">
+                        <div class="price">$2,399</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="laptop-card">
+                <div class="laptop-badge">Value Pick</div>
+                <div class="laptop-image">
+                    <img src="https://m.media-amazon.com/images/I/71qod7R6QVL._AC_SL1500_.jpg" alt="ASUS ZenBook 14">
+                </div>
+                <div class="laptop-info">
+                    <div class="laptop-brand">ASUS</div>
+                    <h3 class="laptop-name">ZenBook 14 Flip</h3>
+                    <div class="laptop-specs">
+                        <div class="spec">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">Ryzen 7 5800H</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Display:</span>
+                            <span class="spec-value">14" 2.8K OLED Touch</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Storage:</span>
+                            <span class="spec-value">512GB SSD</span>
+                        </div>
+                    </div>
+                    <div class="laptop-price">
+                        <div class="price">$999 <span class="old-price">$1,199</span></div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="laptop-card">
+                <div class="laptop-badge">Gaming</div>
+                <div class="laptop-image">
+                    <img src="https://m.media-amazon.com/images/I/81YSmj+ZkIL._AC_SL1500_.jpg" alt="MSI Raider GE78">
+                </div>
+                <div class="laptop-info">
+                    <div class="laptop-brand">MSI</div>
+                    <h3 class="laptop-name">Raider GE78 HX</h3>
+                    <div class="laptop-specs">
+                        <div class="spec">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">i9-13980HX</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">GPU:</span>
+                            <span class="spec-value">RTX 4090</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">RAM:</span>
+                            <span class="spec-value">64GB DDR5</span>
+                        </div>
+                    </div>
+                    <div class="laptop-price">
+                        <div class="price">$4,299</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="laptop-card">
+                <div class="laptop-badge">Ultrabook</div>
+                <div class="laptop-image">
+                    <img src="https://m.media-amazon.com/images/I/71KCwNV6MuL._AC_SL1500_.jpg" alt="HP Spectre x360">
+                </div>
+                <div class="laptop-info">
+                    <div class="laptop-brand">HP</div>
+                    <h3 class="laptop-name">Spectre x360 14</h3>
+                    <div class="laptop-specs">
+                        <div class="spec">
+                            <span class="spec-label">Processor:</span>
+                            <span class="spec-value">i7-1360P</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Display:</span>
+                            <span class="spec-value">14" 3K2K OLED</span>
+                        </div>
+                        <div class="spec">
+                            <span class="spec-label">Storage:</span>
+                            <span class="spec-value">1TB SSD</span>
+                        </div>
+                    </div>
+                    <div class="laptop-price">
+                        <div class="price">$1,649</div>
+                        <a href="#" class="btn">View</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <i class="fas fa-briefcase"></i>
+                    <h3>Business Laptops</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Gaming Laptops</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Developer Laptops</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Creative Work</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-university"></i>
+                    <h3>Student Laptops</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>2-in-1 Convertibles</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container testimonials">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The MacBook Pro I bought from Golden Laptops exceeded all my expectations. The service was excellent and the delivery was super fast!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JD</div>
+                    <div class="author-info">
+                        <h4>John D.</h4>
+                        <p>Graphic Designer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"As a computer science student, I needed a powerful yet portable laptop. The ASUS ZenBook I got here was the perfect choice at a great price."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SM</div>
+                    <div class="author-info">
+                        <h4>Sarah M.</h4>
+                        <p>University Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The MSI gaming laptop I purchased handles all the latest games at max settings. The staff helped me choose the perfect configuration for my needs."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RT</div>
+                    <div class="author-info">
+                        <h4>Robert T.</h4>
+                        <p>Gaming Enthusiast</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="container">
+        <div class="newsletter">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Get the latest laptop releases, exclusive deals, and tech tips delivered to your inbox</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address">
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Golden Laptops</h3>
+                    <p>Your premier destination for high-quality laptops with expert advice and unbeatable prices.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Tech Avenue, Digital City</li>
+                        <li><i class="fas fa-phone"></i> (800) 555-0199</li>
+                        <li><i class="fas fa-envelope"></i> info@goldenlaptops.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9AM - 7PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Golden Laptops. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
