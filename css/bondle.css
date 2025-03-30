@@ -1,0 +1,49 @@
+body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #fff9c4; /* Light yellow background */
+}
+
+.card{
+    margin: 20px;
+    background-color: #f0efea; /* Bright yellow for the card */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    color: #333; /* Dark text for contrast */
+}
+#container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.card:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+.card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0 0;
+}
+#btn:hover{
+    outline: #fca61f; /* Bright yellow button */
+    box-shadow: 1px 1px 10px #fca61f;
+    transition: all 0.3s ease;
+    background-color: white;
+    color: #333; /* Dark text for contrast */
+}
+img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+#carouselExampleIndicators{
+    margin-top: px;
+}
+
