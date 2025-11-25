@@ -220,11 +220,11 @@ h1{
 }
 /* From Uiverse.io by mrhyddenn */ 
 .loader {
-  /* position: relative; */
+  position: relative;
 }
 
 .loader span {
-  position: absolute;
+  /* position: absolute; */
   color: #fff;
   transform: translate(-50%, -50%);
   font-size: 38px;
@@ -253,4 +253,5 @@ h1{
      51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
   }
 }
+
 
