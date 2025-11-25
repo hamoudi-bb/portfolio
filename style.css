@@ -233,12 +233,12 @@ h1{
 
 .loader span:nth-child(1) {
   color: transparent;
-  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+  -webkit-text-stroke: 0.3px rgb(252, 198, 255);
 }
 
 .loader span:nth-child(2) {
-  color: rgb(128, 198, 255);
-  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  color: rgb(252, 166, 31);
+  -webkit-text-stroke: 1px rgb(252, 166, 31);
   animation: uiverse723 3s ease-in-out infinite;
 }
 
@@ -253,6 +253,7 @@ h1{
      51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
   }
 }
+
 
 
 
