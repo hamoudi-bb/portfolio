@@ -219,7 +219,7 @@ h1{
 
 }
 /* === removing default button style ===*/
-.button1 {
+.button {
   margin: 0;
   height: auto;
   background: transparent;
@@ -229,7 +229,7 @@ h1{
 }
 
 /* button styling */
-.button1 {
+.button {
   --border-right: 6px;
   --text-stroke-color: #ff9137;
   --animation-color: #ff9137;
@@ -257,10 +257,11 @@ h1{
   -webkit-text-stroke: 1px var(--animation-color);
 }
 /* hover */
-.button1:hover .hover-text {
+.button:hover .hover-text {
   width: 100%;
   filter: drop-shadow(0 0 23px var(--animation-color));
 }
+
 
 
 
